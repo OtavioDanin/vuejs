@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ClientSearchPage from '../App.vue'; // Sua página de consulta existente (App.vue é a raiz)
+// import ClientSearchPage from '../App.vue'; // Sua página de consulta existente (App.vue é a raiz)
+
+import ClientSearchPage from '../views/ClientSearch.vue';
 import ClientRegisterPage from '../views/ClientRegister.vue'; // A nova página de cadastro
 
 const routes = [
@@ -13,7 +15,6 @@ const routes = [
     name: 'ClientRegister',
     component: ClientRegisterPage,
   },
-  // Você pode adicionar mais rotas aqui, como para edição:
   // {
   //   path: '/clientes/:id/editar',
   //   name: 'ClientEdit',

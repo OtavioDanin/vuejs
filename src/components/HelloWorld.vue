@@ -40,9 +40,6 @@ export default {
   methods: {
     async fetchPessoas() {
       try {
-        // Substitua 'http://localhost:8000/api/pessoas' pela URL real da sua API Laravel.
-        // Certifique-se de que sua API Laravel esteja configurada para permitir CORS
-        // da origem do seu aplicativo Vue.js (ex: http://localhost:8080).
         const response = await axios.get('http://localhost:8001/api/clientes');
         this.pessoas = response.data;
       } catch (err) {

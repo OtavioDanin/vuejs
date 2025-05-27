@@ -1,7 +1,6 @@
 <template>
   <div id="client-register-page">
     <header class="header">
-      <!-- <img src="../assets/logo_upd8.png" alt="Logo upd8" class="logo" /> -->
     </header>
 
     <div class="container">
@@ -106,7 +105,8 @@ export default {
       this.estadosError = null;
       try {
         // --- SUBSTITUA ESTA URL PELA URL REAL DO SEU ENDPOINT DE ESTADOS NO LARAVEL ---
-        const response = await axios.get('http://localhost:8000/api/estados');
+        const response = await axios.get('http://localhost:8001/api/estados');
+        console.log(response.data)
         this.estados = response.data; // Supondo que sua API retorna um array de objetos { id, nome, sigla }
       } catch (error) {
         this.estadosError = 'Erro ao carregar estados.';
@@ -127,9 +127,8 @@ export default {
       this.cidadesLoading = true;
       this.cidadesError = null;
       try {
-        // --- SUBSTITUA ESTA URL PELA URL REAL DO SEU ENDPOINT DE CIDADES NO LARAVEL ---
-        const response = await axios.get(`http://localhost:8000/api/cidades?estado_sigla=${this.client.estado}`);
-        this.cidades = response.data; // Supondo que sua API retorna um array de objetos { id, nome, estado_id }
+        const response = await axios.get(`http://localhost:8001/api/cidades?estado_sigla=${this.client.estado}`);
+        this.cidades = response.data;
       } catch (error) {
         this.cidadesError = 'Erro ao carregar cidades.';
         console.error('Erro ao buscar cidades:', error);
@@ -149,16 +148,17 @@ export default {
       // Remover máscara do CPF antes de enviar para a API
       const clientToSend = { ...this.client };
       clientToSend.cpf = clientToSend.cpf.replace(/\D/g, '');
-
+      clientToSend.cidade_id = 1;
       // Validar dados (exemplo simples)
-      if (!clientToSend.nome || !clientToSend.cpf || !clientToSend.data_nascimento || !clientToSend.cidade_id) {
+      clientToSend.data =  clientToSend.data_nascimento;
+      clientToSend.cidade =  clientToSend.cidade_id;
+      if (!clientToSend.nome || !clientToSend.cpf || !clientToSend.data || !clientToSend.cidade_id) {
         alert('Por favor, preencha todos os campos obrigatórios.');
         return;
       }
 
       try {
-        // --- SUBSTITUA ESTA URL PELA URL REAL DO SEU ENDPOINT DE CADASTRO/EDIÇÃO ---
-        const apiUrl = 'http://localhost:8000/api/clientes';
+        const apiUrl = 'http://localhost:8001/api/clientes';
 
         let response;
         if (clientToSend.id) {
@@ -193,7 +193,6 @@ export default {
       this.cidades = []; // Limpa a lista de cidades também
       this.cidadesError = null;
     },
-    // Método para carregar cliente para edição (se você quiser implementar)
     // async loadClientForEdit(id) {
     //   try {
     //     const response = await axios.get(`http://localhost:8000/api/clientes/${id}`);

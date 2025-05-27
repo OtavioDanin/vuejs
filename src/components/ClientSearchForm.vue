@@ -69,16 +69,15 @@ export default {
   },
   methods: {
     formatCpf(event) {
-      let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não for dígito
+      let value = event.target.value.replace(/\D/g, '');
       if (value.length > 3) value = value.replace(/^(\d{3})/, '$1.');
       if (value.length > 7) value = value.replace(/^(\d{3})\.(\d{3})/, '$1.$2.');
       if (value.length > 11)
         value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})/, '$1.$2.$3-');
-      this.filters.cpf = value; // Atualiza o v-model
+      this.filters.cpf = value; 
     },
     searchClients() {
-      // Emite um evento 'search' para o componente pai com os filtros
-      this.$emit('search', { ...this.filters }); // Cria uma cópia para evitar modificação direta
+      this.$emit('search', { ...this.filters }); 
     },
     clearFilters() {
       this.filters = {
@@ -89,7 +88,6 @@ export default {
         estado: '',
         cidade: '',
       };
-      // Emite um evento 'clear' para o componente pai
       this.$emit('clear');
     },
   },
@@ -135,7 +133,7 @@ export default {
   border-radius: 4px;
   font-size: 1em;
   width: 100%;
-  box-sizing: border-box; /* Garante que padding e border não aumentem a largura total */
+  box-sizing: border-box;
 }
 
 .form-group input[type='text']::placeholder {
@@ -143,10 +141,10 @@ export default {
 }
 
 .radio-group {
-  flex-direction: row; /* Para alinhar labels e radios horizontalmente */
+  flex-direction: row; 
   align-items: center;
-  gap: 10px; /* Espaço entre o label 'Sexo:' e os radios */
-  margin-top: 15px; /* Ajusta o alinhamento com os outros campos */
+  gap: 10px;
+  margin-top: 15px;
 }
 
 .radio-group label {

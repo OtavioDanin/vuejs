@@ -33,8 +33,8 @@
           <td>{{ cliente.nome }}</td>
           <td>{{ cliente.cpf }}</td>
           <td>{{ cliente.data_nascimento }}</td>
-          <td>{{ cliente.cidade.estado }}</td>
-          <td>{{ cliente.cidade.nome }}</td>
+          <td>{{ cliente.estado }}</td>
+          <td>{{ cliente.cidade }}</td>
         </tr>
       </tbody>
     </table>
